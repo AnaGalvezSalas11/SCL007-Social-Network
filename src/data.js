@@ -1,3 +1,6 @@
+
+
+
 window.socialNetwork = {
 
     createNewUserStorage: ()=> {
@@ -7,18 +10,24 @@ window.socialNetwork = {
                     "profile": {
                         "username": firebase.auth().currentUser.displayName !== null ? firebase.auth().currentUser.displayName : firebase.auth().currentUser.email,
                         "especialidad": false,
-                        "profilePic": firebase.auth().currentUser.photoURL,
+                        "profilePic": firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : './img/userLogo.png',
                         "email": firebase.auth().currentUser.email
                     },
                     "posts": false,
                     "comments": false
                 })
+                // firebase.database().ref("users/"+firebase.auth().currentUser.uid).once("value", function(snapshot) {
+                //     window.currentUser = snapshot.val();
+                // })
             }
             else {
+                // firebase.database().ref("users/"+firebase.auth().currentUser.uid).once("value", function(snapshot) {
+                //     window.currentUser = snapshot.val();
+                // })
                 // console.log(snapshot.val())
                 // console.log("usuario ya existia")
+                return snapshot
             }
-            return snapshot
         })
         
     },
@@ -35,9 +44,10 @@ window.socialNetwork = {
         for(let post of postKeys) {
             // console.log(Object.values(snapshot.val()[post].comments).length)
             document.getElementById("content").innerHTML += `
-            <div class="post" id="caja${post}">
+            <div class="post div-responsive" id="caja${post}">
                    <div class="post-header">
-                       <span><img src="${snapshot.val()[post].authorPic ? snapshot.val()[post].authorPic : './img/userLogo.png'}" class="user-pic-post" alt="userPic"><p>${snapshot.val()[post].author} - Profesora de Básica</p></span>
+                       <span><img src="${snapshot.val()[post].authorPic ? snapshot.val()[post].authorPic : './img/userLogo.png'}" class="user-pic-post" alt="userPic"><p>${snapshot.val()[post].author} ${snapshot.val()[post].especialidad ? "- "+snapshot.val()[post].especialidad : ""}</p></span>
+      
                    </div>
                    <div class="post-content">
                     <textarea disabled  class= "postUser" id="post-user${post}">${snapshot.val()[post].content}</textarea>
@@ -55,7 +65,7 @@ window.socialNetwork = {
                    <a class="teachers-font create-comment" id="create-comment-${post}">Comentar</a>
                    </div>
                    <div id="create-comments-section-${post}"></div>
-                   <div class="comments-section" id="comments-section-${post}">
+                   <div class="comments-section div-responsive" id="comments-section-${post}">
                    
                    </div>
             </div>
@@ -112,7 +122,21 @@ window.socialNetwork = {
             
           }
         
-    }    
+    },
+    
+    updateProfile: (username, profiency, userPic)=>{
+
+        firebase.database().ref(`users/${firebase.auth().currentUser.uid}`).once("value", function(snapshot){
+            firebase.database().ref(`users/${firebase.auth().currentUser.uid}/profile`).update({
+                username: username ? username : snapshot.val().profile.username,
+                especialidad: profiency ? profiency : snapshot.val().profile.especialidad,
+                profilePic: userPic ? userPic : snapshot.val().profile.profilePic
+            })
+
+
+        })
+            
+    }
     
 
 
