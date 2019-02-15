@@ -32,7 +32,9 @@ body {
     
 }
 
-
+#friends {
+    display: none;
+}
 
 #new-account {
     cursor: pointer;
@@ -456,6 +458,7 @@ textarea.post-input {
     color: steelblue;
 }
 
+<<<<<<< HEAD
 .update-post{
     margin-left: 2px !important;
     font-size: 14px;
@@ -487,6 +490,8 @@ textarea.post-input {
 
 }
 
+=======
+>>>>>>> 2d3cc09ac98f4a7ba394e0b118faf0c37f24a083
 #profile-div {
     display: block;
     width: 80%;
@@ -520,6 +525,7 @@ textarea.post-input {
 .responsive-nav {
     display: flex;
     border-bottom: solid 1px rgb(11, 89, 116);
+    z-index: 100;
 }
 
 .nav-bar-desktop {
@@ -538,6 +544,44 @@ img.nav-bar-desktop {
 #search-tag {
     margin: auto 10px;
 }
+<<<<<<< HEAD
+=======
+.update-post{
+    margin-left: 2px !important;
+    font-size: 14px;
+}
+
+.cancel-post{
+ margin-right: 5px;
+ font-size: 14px;
+}
+
+.optionConfirmCancel, .button_confirm_edit{
+    display: none;
+}
+
+.postUser, .coment_user{
+    min-height: 20%;
+    margin: 5% auto;
+    border: whitesmoke;
+    background-color: whitesmoke;
+    border-radius: 14px;
+    margin: auto 0; 
+    display: block; 
+    /* overflow: scroll; */
+    width: 102%;
+    resize: vertical;
+    word-wrap: normal;
+    font-size: 17px;
+    color: black;
+
+}
+
+textarea {
+    font-family: 'Roboto', sans-serif;
+}
+
+>>>>>>> 2d3cc09ac98f4a7ba394e0b118faf0c37f24a083
 
 @media only screen and (max-width: 768px) {
     .responsive {
@@ -560,11 +604,14 @@ img.nav-bar-desktop {
     .nav-bar-desktop {
         display: none;
     }
+<<<<<<< HEAD
   
 
 /* .textarea:focus {
     background-color: blue
 } */
+=======
+>>>>>>> 2d3cc09ac98f4a7ba394e0b118faf0c37f24a083
     #search-nav {
         margin-left: 5%;
         display: block;
@@ -586,3 +633,11 @@ img.nav-bar-desktop {
     }
   }
 
+<<<<<<< HEAD
+=======
+
+
+/* .textarea:focus {
+    background-color: blue
+} */
+>>>>>>> 2d3cc09ac98f4a7ba394e0b118faf0c37f24a083

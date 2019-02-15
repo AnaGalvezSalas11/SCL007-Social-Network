@@ -47,7 +47,11 @@ window.socialNetwork = {
             <div class="post div-responsive" id="caja${post}">
                    <div class="post-header">
                        <span><img src="${snapshot.val()[post].authorPic ? snapshot.val()[post].authorPic : './img/userLogo.png'}" class="user-pic-post" alt="userPic"><p>${snapshot.val()[post].author} ${snapshot.val()[post].especialidad ? "- "+snapshot.val()[post].especialidad : ""}</p></span>
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 2d3cc09ac98f4a7ba394e0b118faf0c37f24a083
                    </div>
                    <div class="post-content">
                     <textarea disabled  class= "postUser" id="post-user${post}">${snapshot.val()[post].content}</textarea>
@@ -136,9 +140,37 @@ window.socialNetwork = {
 
         })
             
-    }
+    },
+    //tag es un array
+    searchTag: (tag)=> {
+        let filteredPosts = {};
+        firebase.database().ref("posts/").on("value", function(snapshot){
+            // console.log(snapshot.val())
+            for (let i = 0; i<tag.length; i++){
+                for (let post in snapshot.val()) {
+                    // console.log(post)
+                    if(snapshot.val()[post].tags.toLowerCase().split(" ").indexOf(tag[i].toLowerCase()) !== -1 || snapshot.val()[post].tags.toLowerCase().split(" ").indexOf("#"+tag[i].toLowerCase()) !== -1 ){
+                        filteredPosts[post] = snapshot.val()[post]
+                    }
+                }
+            }
+
+
+        })
+        return filteredPosts
+    },
     
 
+   verification: ()=>{
+        let user = firebase.auth().currentUser;
+        user.sendEmailVerification().then(function() {
+            // Email sent.
+            console.log("Enviando correo..");
+        }).catch(function(error) {
+            // An error happened.
+            console.log(error);
+        });
+    }
 
 
 
