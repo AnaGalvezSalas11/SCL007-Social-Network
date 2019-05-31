@@ -1,5 +1,12 @@
 [VER DEMO](https://raquelcc.github.io/SCL007-Social-Network/)
 
+Tecnlogías utilizadas:
+
+* Javascript
+* Firebase
+* CSS
+
+
 
 # TEACHERS' SQUAD
 
